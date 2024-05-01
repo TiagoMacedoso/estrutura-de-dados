@@ -48,12 +48,34 @@ class ListaEncadeada:
         
         return corrente
     
-    def remove():
-        pass
+    def remove(self, valor):
+        assert self.cabeca, "Impossível remover valor de uma lista vazia!"
+        
+        # Nodo a ser removido é a cabeça da lista
+        if self.cabeca.dado == valor:
+            self.cabeca = self.cabeca.proximo
+            
+        else:
+            anterior = None
+            corrente = self.cabeca
+            
+            #Encontra a posição do elemento a ser removido
+            while corrente and corrente.dado != valor:
+                anterior = corrente
+                corrente = corrente.proximo
+                
+            #O nodo corrente é o nodo a ser removido
+            if corrente:
+                anterior.proximo = corrente.proximo
+            else:
+                #O nodo corrente é a cauda da lista
+                anterior.proximo = None
 
 lista = ListaEncadeada()
 
 lista.insere_no_inicio(lista, 20)
 print(lista)
 lista.insere_no_inicio(lista, 30)
+print(lista)
+lista.remove(20)
 print(lista)
